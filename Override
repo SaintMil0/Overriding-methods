@@ -1,0 +1,154 @@
+import java.util.Scanner;
+
+// Base class Book
+class Book {
+    // Private fields
+    private String title;
+    private String author;
+    private String publisher;
+    private String publicationDate;
+    
+    // Default constructor
+    public Book() {
+        title = "";
+        author = "";
+        publisher = "";
+        publicationDate = "";
+    }
+    
+    // Parameterized constructor
+    public Book(String title, String author, String publisher, String publicationDate) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+    }
+    
+    // Getters and setters
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    public String getAuthor() {
+        return author;
+    }
+    
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    
+    public String getPublisher() {
+        return publisher;
+    }
+    
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+    
+    public String getPublicationDate() {
+        return publicationDate;
+    }
+    
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+    
+    // Method to print book information
+    public void printInfo() {
+        System.out.println("Book Information: ");
+        System.out.println("   Book Title: " + title);
+        System.out.println("   Author: " + author);
+        System.out.println("   Publisher: " + publisher);
+        System.out.println("   Publication Date: " + publicationDate);
+    }
+}
+
+// Derived class Encyclopedia
+class Encyclopedia extends Book {
+    // Additional private fields
+    private String edition;
+    private int numPages;
+    
+    // Default constructor
+    public Encyclopedia() {
+        super();
+        edition = "";
+        numPages = 0;
+    }
+    
+    // Parameterized constructor
+    public Encyclopedia(String title, String author, String publisher, String publicationDate, 
+                        String edition, int numPages) {
+        super(title, author, publisher, publicationDate);
+        this.edition = edition;
+        this.numPages = numPages;
+    }
+    
+    // Getters and setters for additional fields
+    public String getEdition() {
+        return edition;
+    }
+    
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+    
+    public int getNumPages() {
+        return numPages;
+    }
+    
+    public void setNumPages(int numPages) {
+        this.numPages = numPages;
+    }
+    
+    // Override the printInfo method
+    @Override
+    public void printInfo() {
+        System.out.println("Book Information: ");
+        System.out.println("   Book Title: " + getTitle());
+        System.out.println("   Author: " + getAuthor());
+        System.out.println("   Publisher: " + getPublisher());
+        System.out.println("   Publication Date: " + getPublicationDate());
+        System.out.println("   Edition: " + edition);
+        System.out.println("   Number of Pages: " + numPages);
+    }
+}
+
+public class OverridingMethodsLab {
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+        
+        // Read input for Book
+        String bookTitle = scnr.nextLine();
+        String bookAuthor = scnr.nextLine();
+        String bookPublisher = scnr.nextLine();
+        String bookPublicationDate = scnr.nextLine();
+        
+        // Create Book object
+        Book myBook = new Book(bookTitle, bookAuthor, bookPublisher, bookPublicationDate);
+        
+        // Read input for Encyclopedia
+        String encyclopediaTitle = scnr.nextLine();
+        String encyclopediaAuthor = scnr.nextLine();
+        String encyclopediaPublisher = scnr.nextLine();
+        String encyclopediaPublicationDate = scnr.nextLine();
+        String encyclopediaEdition = scnr.nextLine();
+        int encyclopediaPages = Integer.parseInt(scnr.nextLine());
+        
+        // Create Encyclopedia object
+        Encyclopedia myEncyclopedia = new Encyclopedia(encyclopediaTitle, encyclopediaAuthor, 
+                                                      encyclopediaPublisher, encyclopediaPublicationDate,
+                                                      encyclopediaEdition, encyclopediaPages);
+        
+        // Print information for both objects
+        myBook.printInfo();
+        System.out.println();
+        myEncyclopedia.printInfo();
+        
+        scnr.close();
+    }
+}
